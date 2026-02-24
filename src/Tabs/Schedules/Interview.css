@@ -1,0 +1,209 @@
+.interview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  width: 100%; 
+  max-width: 1540px;
+  margin: 0 auto;
+}
+
+.interview-header-card {
+  background: white;
+  border-radius: 13px;
+  padding: 33px;
+  border: 1px solid #eef2f6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.interview-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+.header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.interview-card-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+}
+
+.total-interviews-badge {
+  background-color: #eff6ff;
+  color: #3b82f6;
+  padding: 11px 22px;
+  border-radius: 11px;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border: 1px solid #dbeafe;
+}
+
+.interview-controls {
+  display: flex;
+  gap: 22px;
+}
+
+.search-wrapper {
+  position: relative;
+  flex: 1; 
+}
+
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.interview-search-input {
+  width: 100%;
+  padding: 15px 18px 15px 53px;
+  border-radius: 11px;
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  font-size: 1.1rem;
+  box-sizing: border-box;
+}
+
+.filter-date-btn {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 26px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+  color: #475569;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.interview-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.date-group-card {
+  background: white;
+  border-radius: 13px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.date-group-header {
+  padding: 22px 26px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #f8fafc;
+}
+
+.date-icon-box {
+  background: #eff6ff;
+  color: #3b82f6;
+  padding: 10px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+}
+
+.date-group-text h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.interview-row {
+  display: flex;
+  align-items: center;
+  padding: 26px;
+  gap: 30px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.time-column {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #3b82f6;
+  font-weight: 700;
+  font-size: 1.1rem;
+  width: 140px;
+}
+
+.applicant-column {
+  flex: 1;
+}
+
+.app-badge {
+  background: #3b82f6;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-right: 10px;
+}
+
+.app-name {
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+.app-contacts {
+  display: flex;
+  gap: 22px;
+  color: #64748b;
+  margin-top: 5px;
+}
+
+.actions-column {
+  display: flex;
+  gap: 13px;
+}
+
+.btn-action-view, .btn-action-download {
+  padding: 11px 22px;
+  border-radius: 9px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.btn-action-view { background: white; border: 1px solid #cbd5e1; }
+.btn-action-download { background: #3b82f6; border: none; color: white; }
+
+/* MODAL STYLES */
+.int-modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); display: flex; justify-content: center; align-items: center; z-index: 9999;
+}
+.int-modal-content {
+  background: white; width: 990px; border-radius: 13px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.int-modal-header { 
+  background: #5d9cec; padding: 22px 33px; display: flex; justify-content: center; align-items: center; color: white; position: relative; 
+}
+.int-modal-body { padding: 33px; overflow-y: auto; background: #F8FAFC; display: column; flex-direction: column; gap: 26px; }
+.int-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 44px; background: white; padding: 26px; border-radius: 9px; border: 1px solid #e2e8f0; }
+.int-info-label { font-size: 0.8rem; color: #718096; font-weight: 700; text-transform: uppercase; }
+.int-info-value { font-size: 1rem; color: #2d3748; font-weight: 600; }
+.int-modal-footer { padding: 22px 33px; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 13px; }
+.int-btn-hire { background: #16a34a; color: white; border: none; padding: 14px 33px; border-radius: 7px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+.int-btn-reject { background: #f56565; color: white; border: none; padding: 14px 33px; border-radius: 7px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }

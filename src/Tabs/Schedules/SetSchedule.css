@@ -1,0 +1,689 @@
+/* --- PAGE LAYOUT & SCROLL FIX --- */
+.schedules-page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden; /* Force fit to screen, no full page scroll */
+  padding: 10px 32px 24px 32px; /* FIX: Reduced top padding to remove the dead air/blue space */
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  color: #1e293b;
+  background: transparent; /* Allows it to blend smoothly under your navbar */
+}
+
+/* Page Header (Matches Image 3) */
+.schedules-page-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.header-icon-wrapper {
+  background: white;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1f5f9;
+  color: #1e3a8a; /* Darker blue to match prototype */
+}
+
+.schedules-page-header h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* Tabs */
+.schedules-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.sched-tab {
+  padding: 10px 24px;
+  border: none;
+  background: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #64748b;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.sched-tab.active {
+  background: #3b82f6;
+  color: white;
+}
+
+/* --- 1. CORE LAYOUT --- */
+.set-schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  flex: 1;
+  min-height: 0; /* Allows inner scrolling */
+}
+
+.sched-card {
+  background: white;
+  border: 1px solid #eef2f6;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sched-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.sched-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.sched-select-all {
+  font-size: 0.85rem;
+  color: #64748b;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.sched-select-all:hover {
+  color: #3b82f6;
+}
+
+.sched-status-label {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* --- SCROLLABLE LISTS INSIDE CARDS --- */
+.sched-scroll-area {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sched-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sched-scroll-area::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* --- 2. INPUTS, SEARCH & DROPDOWNS --- */
+.sched-input-container {
+  position: relative;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.sched-icon-left {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.sched-input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.sched-input:focus {
+  border-color: #3b82f6;
+}
+
+.sched-filled {
+  background-color: white;
+  padding-left: 14px;
+  font-weight: 500;
+}
+
+.sched-dropdown-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+
+.sched-dropdown-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sched-dropdown-box .sched-icon-left {
+  position: static;
+  transform: none;
+}
+
+.sched-dropdown-text {
+  flex-grow: 1;
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-left: 0;
+}
+
+.sched-icon-right {
+  color: #94a3b8;
+  margin-left: auto;
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.2s;
+}
+
+.sched-custom-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #3b82f6;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.sched-dropdown-item {
+  padding: 12px 15px;
+  font-size: 0.95rem;
+  color: #1e293b;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.sched-dropdown-item.active-item {
+  background-color: #93c5fd;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.sched-dropdown-item:hover:not(.active-item) {
+  background-color: #f1f5f9;
+}
+
+/* --- 3. APPLICANT LIST (LEFT COLUMN) --- */
+.sched-app-row {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  transition: 0.2s;
+  cursor: pointer;
+  align-items: flex-start;
+}
+
+.sched-app-row:hover {
+  background-color: #f8fafc;
+}
+
+.selected-border {
+  border-color: #3b82f6 !important;
+  background-color: #eff6ff !important;
+}
+
+.sched-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #3b82f6;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.sched-app-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sched-app-name-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sched-id-badge {
+  background: #3b82f6;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.sched-name-text {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.sched-contact-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.sched-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* --- 4. ASSIGN DATE & CALENDAR POPUP --- */
+.assign-date-container {
+  position: relative;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.sched-assign-btn {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sched-assign-btn:hover:not(:disabled) {
+  background: #f8fafc;
+}
+
+.sched-assign-btn:disabled {
+  background: #f3f4f6;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.calendar-picker-popup {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  width: 240px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.calendar-header-small {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #1e293b;
+}
+
+.calendar-grid-small {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.cal-weekday-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.cal-day-small {
+  padding: 6px 0;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #475569;
+}
+
+.cal-day-small:hover {
+  background: #f1f5f9;
+  color: #3b82f6;
+}
+
+.active-day-blue {
+  background: #3b82f6 !important;
+  color: white !important;
+  font-weight: 700;
+}
+
+/* Confirm Move Area */
+.date-confirm-box {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selected-date-display {
+  background: #eff6ff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.confirm-move-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.confirm-move-btn:hover {
+  background: #2563eb;
+}
+
+/* --- 6. RIGHT COLUMN DETAILS --- */
+.sched-form-group {
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.sched-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+/* Empty States */
+.sched-dashed-box {
+  border: 2px dashed #fde047;
+  background-color: #fefce8;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.sched-circle-icon {
+  background: #fef08a;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.sched-orange { color: #ca8a04; }
+.sched-empty-main { font-weight: 700; margin: 0; color: #1e293b; font-size: 0.95rem; }
+.sched-empty-sub { font-size: 0.85rem; color: #64748b; margin-top: 4px; }
+
+.left-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 40px 20px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.left-empty-icon {
+  color: #94a3b8;
+  margin-bottom: 12px;
+}
+
+/* Assign Time Cards */
+.assign-time-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: white;
+}
+
+.assign-time-card.pending {
+  border-color: #fde047;
+  background-color: #fefce8;
+}
+
+.assign-time-card.success {
+  border-color: #bbf7d0;
+  background-color: #f0fdf4;
+}
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pending-badge {
+  background: #ffedd5;
+  color: #ea580c;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.remove-btn {
+  color: #ef4444;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.card-detail-row.success-time {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.time-slot-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  background: white;
+  color: #1e293b;
+}
+
+/* Disabled/Grayed out option */
+.time-slot-select option:disabled {
+  color: #94a3b8;
+  font-style: italic;
+  background-color: #f8fafc;
+}
+
+/* --- BUTTONS --- */
+.sched-btn-primary {
+  width: 100%;
+  padding: 14px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.sched-btn-primary:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.sched-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- 7. MODALS --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Confirm Modal */
+.confirm-modal {
+  background: white;
+  width: 420px;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+
+.modal-header-box { margin-bottom: 20px; }
+.modal-icon-bg { background: #eff6ff; width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.modal-header-box h2 { margin: 0 0 8px; font-size: 1.25rem; font-weight: 800; color: #0f172a; }
+.modal-header-box p { color: #64748b; font-size: 0.9rem; margin: 0; }
+
+.modal-section-box { border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.modal-section-box.blue-bg { background: #eff6ff; border-color: #bfdbfe; }
+.modal-label { font-size: 0.75rem; color: #64748b; font-weight: 700; display: block; margin-bottom: 8px; }
+.modal-label.blue-text { color: #1d4ed8; }
+
+.modal-date-val { display: flex; align-items: center; gap: 8px; color: #1e3a8a; font-weight: 700; font-size: 1rem; }
+
+.modal-app-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.modal-app-item { font-size: 0.9rem; color: #0f172a; display: flex; align-items: center; font-weight: 500; }
+.dot-blue { height: 6px; width: 6px; background: #3b82f6; border-radius: 50%; margin-right: 10px; }
+.gray-text { color: #94a3b8; font-weight: 400; margin-left: 6px; }
+
+.modal-next-step-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 16px; margin-bottom: 24px; }
+.next-step-header { display: flex; align-items: center; gap: 8px; color: #d97706; font-weight: 700; margin-bottom: 6px; }
+.modal-next-step-box p { margin: 0; color: #b45309; font-size: 0.85rem; }
+
+.modal-footer { display: flex; gap: 12px; }
+.btn-cancel { flex: 1; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; background: white; font-weight: 600; color: #475569; cursor: pointer; }
+.btn-confirm { flex: 1; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+
+/* Incomplete Modal */
+.incomplete-modal {
+  background: white;
+  width: 400px;
+  border-radius: 16px;
+  padding: 28px;
+  text-align: left;
+}
+.inc-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.inc-icon-bg { background: #fef08a; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #ca8a04; }
+.incomplete-modal h2 { margin: 0; font-size: 1.25rem; font-weight: 800; color: #0f172a; }
+.inc-desc { color: #475569; font-size: 0.9rem; line-height: 1.5; margin-bottom: 24px; }
+
+.inc-warn-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 16px; margin-bottom: 24px; }
+.inc-warn-title { display: flex; align-items: center; gap: 8px; color: #d97706; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+.inc-warn-desc { color: #b45309; font-size: 0.85rem; margin: 0 0 0 24px; }
+.btn-got-it { width: 100%; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+/* Utilities */
+.blue-text { color: #3b82f6; }
+.orange-text { color: #d97706; }

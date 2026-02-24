@@ -1,0 +1,72 @@
+.schedules-main-container {
+  padding: 11px 33px 26px 33px;
+  height: 100vh;
+  overflow: hidden; /* FIX: No full page scroll */
+  font-family: 'Inter', sans-serif;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.page-header-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.header-icon-box {
+  background: white;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  color: #1e3a8a;
+}
+
+.page-header-wrapper h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.tab-navigation {
+  display: flex;
+  gap: 13px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.tab-link {
+  padding: 11px 26px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #64748b;
+  background: none;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.tab-link.active {
+  background-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.tab-content-area {
+  flex: 1;
+  min-height: 0; /* Allows inner components to scroll */
+}
