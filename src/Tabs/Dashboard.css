@@ -1,0 +1,214 @@
+.overview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header Area */
+.tab-title-area {
+  display: flex;
+  align-items: center;
+  margin-top: -30px;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+
+.tab-title-area h2 {
+  font-size: 1.4rem;
+  color: #001d3d;
+  font-weight: 700;
+}
+
+.title-icon {
+  background: white;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: #4a90e2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-size: 1.2rem;
+}
+
+/* Stats Cards */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+  padding: 16px 20px; /* Reduced padding to make the card thinner */
+  border-radius: 8px;
+  display: flex;
+  
+  /* THE FIX: Changed from column to row to put icon on the right */
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between; 
+  
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  border: 1px solid transparent;
+  height: auto; /* Ensures the card shrinks vertically */
+}
+
+/* Light pastel border colors matching the image */
+.stat-card.blue { border-color: #dbeafe; }
+.stat-card.orange { border-color: #fef08a; }
+.stat-card.purple { border-color: #e9d5ff; }
+.stat-card.green { border-color: #bbf7d0; }
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Reduced gap to keep text compact */
+}
+
+.stat-info p {
+  font-size: 0.85rem;
+  color: #475569;
+  margin: 0;
+  font-weight: 500;
+}
+
+.stat-info h3 {
+  font-size: 1.8rem;
+  color: #0f172a;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Ensures the icon doesn't squash */
+}
+
+/* Specific background and SVG stroke colors for the icons */
+.blue-bg { background-color: #eff6ff; color: #3b82f6; }
+.orange-bg { background-color: #fffbeb; color: #d97706; }
+.purple-bg { background-color: #f5f3ff; color: #7c3aed; }
+.green-bg { background-color: #ecfdf5; color: #10b981; }
+
+/* Main Grid Layout */
+.data-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.card h4 {
+  margin: 0 0 15px 0;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+/* Chart Specifics */
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.pie-placeholder {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #3b82f6 0% 33%,
+    #f59e0b 33% 66%,
+    #10b981 66% 83%,
+    #ef4444 83% 100%
+  );
+  margin: 20px 0;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 12px;
+  font-size: 0.75rem;
+  color: #475569;
+  margin-bottom: 25px;
+}
+
+.chart-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 15px;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.dots-indicator {
+  display: flex;
+  gap: 4px;
+}
+
+.dot-pill { width: 12px; height: 4px; background: #cbd5e1; border-radius: 2px; }
+.dot-pill.active { width: 20px; background: #f59e0b; }
+
+/* List Item Styling */
+.list-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.blue-item {
+  background: #f1f7ff;
+  border: 1px solid #e0eeff;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.orange-item {
+  background: #fff9f0;
+  border: 1px solid #fff2e0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.item-title { font-size: 0.85rem; font-weight: 600; color: #1e293b; margin: 0; }
+.item-sub { font-size: 0.75rem; color: #64748b; margin: 4px 0 0 0; margin-left: 22px; }
+
+.footer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  margin-top: 10px;
+  color: #64748b;
+}
+
+.view-all-btn {
+  color: #3b82f6;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.highlight-blue { color: #3b82f6; font-weight: 600; }
+.highlight-orange { color: #f59e0b; font-weight: 600; }
